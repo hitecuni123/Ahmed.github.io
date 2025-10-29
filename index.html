@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Nadeem - Portfolio</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --text-color: #333;
+            --text-light: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(126, 125, 125, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/random/1600x900/?technology') center/cover no-repeat;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .hero-content span {
+            color: var(--primary-color);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+        }
+        
+        /* Skills Section */
+        .skills {
+            background-color: var(--dark-color);
+            color: var(--text-light);
+        }
+        
+        .skills .section-title h2 {
+            color: var(--text-light);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .skill-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Projects Section - FIXED */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+            padding: 15px;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+        
+        .project-info {
+            padding: 20px;
+            flex-shrink: 0;
+        }
+        
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .project-info p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .project-gallery-btn {
+            background-color: var(--accent-color);
+            margin-left: 10px;
+        }
+        
+        /* Project Gallery Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            overflow: auto;
+        }
+        
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1000px;
+            background-color: white;
+            border-radius: 10px;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 35px;
+            font-weight: bold;
+            color: var(--text-color);
+            cursor: pointer;
+            z-index: 2001;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+        
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+        
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+            display: block;
+        }
+        
+        /* Mobile App Screenshot Styles */
+        .mobile-screenshot {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: contain;
+            background-color: #f5f5f5;
+            padding: 10px;
+        }
+        
+        /* Video Styles */
+        .gallery-video {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            background-color: #000;
+        }
+        
+        .project-description {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary-color);
+            color: var(--text-light);
+        }
+        
+        .contact .section-title h2 {
+            color: var(--text-light);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 15px;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                position: absolute;
+                right: 0;
+                top: 70px;
+                background-color: var(--secondary-color);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                transform: translateY(-150%);
+                transition: transform 0.5s ease;
+                z-index: -1;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-img {
+                min-height: 200px;
+            }
+            
+            .project-img img {
+                max-height: 250px;
+            }
+            
+            .mobile-screenshot {
+                max-height: 400px;
+            }
+            
+            .gallery-video {
+                max-height: 300px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-img img {
+                max-height: 200px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Ahmed <span>Nadeem</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span>Ahmed</span></h1>
+                <p>A passionate Web & App Developer skilled in modern technologies and UI/UX design using Figma. I build clean, responsive, and user-focused digital products.</p>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="1.jpg" alt="Ahmed Nadeem">
+                </div>
+                <div class="about-text">
+                    <h3>Hello! I'm Ahmed Nadeem</h3>
+                    <p>I'm a passionate web and app developer with expertise in creating responsive and user-friendly websites and applications. I love turning complex problems into simple, beautiful designs.</p>
+                    <p>My journey in web development started 3 years ago, and since then I've worked on various projects that have helped me grow my skills and knowledge.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies, reading tech blogs, or enjoying outdoor activities.</p>
+                    <a href="#contact" class="btn">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <h3>Frontend Development</h3>
+                    <p>HTML, CSS, JavaScript, React, Flutter</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-server"></i>
+                    <h3>Backend Development</h3>
+                    <p>Node.js, Express, MongoDB</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Mobile Development</h3>
+                    <p>Flutter, React Native, Android</p>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-tools"></i>
+                    <h3>Tools & Technologies</h3>
+                    <p>Git, GitHub, VS Code, Figma</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section - FIXED -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="projects-container">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="2.jpg" alt="Insight Doc Analyzer Website">
+                    </div>
+                    <div class="project-info">
+                        <h3>Insight Document Analyzer Website</h3>
+                        <p>A powerful document analysis system with text extraction, image extraction, and smart summarization, supporting both offline and online modes.</p>
+                        <button class="btn" onclick="openGallery('project1')">View Project</button>
+                        <button class="btn project-gallery-btn" onclick="openGallery('project1')">Gallery</button>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="3.jpg" alt="Insight Doc Analyzer App">
+                    </div>
+                    <div class="project-info">
+                        <h3>Offline Insight Document Analyzer App</h3>
+                        <p>Mobile app for quick text and image extraction from documents with offline functionality and smart summarization.</p>
+                        <button class="btn" onclick="openGallery('project2')">View Project</button>
+                        <button class="btn project-gallery-btn" onclick="openGallery('project2')">Gallery</button>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-img">
+                        <img src="b1.jpg" alt="Baker Base">
+                    </div>
+                    <div class="project-info">
+                        <h3>Baker Base App</h3>
+                        <p>An AI-powered bakery e-commerce app with smart recommendations, cart functionality, and seamless checkout.</p>
+                        <button class="btn" onclick="openGallery('project3')">View Project</button>
+                        <button class="btn project-gallery-btn" onclick="openGallery('project3')">Gallery</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Gallery Modals -->
+    <!-- Project 1 Gallery (Website) -->
+    <div id="project1-gallery" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeGallery('project1')">&times;</span>
+            <h2 class="gallery-title">Insight Document Analyzer Website</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="2.jpg" alt="Website Homepage">
+                </div>
+                <div class="gallery-item">
+                    <img src="analyze.jpg" alt="Document Upload">
+                </div>
+                <div class="gallery-item">
+                    <img src="dashboard.jpg" alt="Analysis Results">
+                </div>
+                <div class="gallery-item">
+                    <video controls class="gallery-video">
+                        <source src="vid1.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="project-description">
+                <h3>Project Details</h3>
+                <p>This document analyzer website was built using React for the frontend and Node.js for the backend. It features document upload, text extraction, image recognition, and smart summarization capabilities. The system supports both online and offline modes for document processing.</p>
+                <p><strong>Technologies used:</strong> React, Node.js, MongoDB, Express, Tesseract.js, TensorFlow</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 2 Gallery (Mobile App) -->
+    <div id="project2-gallery" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeGallery('project2')">&times;</span>
+            <h2 class="gallery-title">Offline Insight Document Analyzer App</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="3.jpg" alt="App Home Screen">
+                </div>
+                <div class="gallery-item">
+                    <img class="mobile-screenshot" src="4.jpg" alt="Document Capture">
+                </div>
+                <div class="gallery-item">
+                    <img class="mobile-screenshot" src="insights.jpg" alt="Analysis Results">
+                </div>
+                <div class="gallery-item">
+                    <img class="mobile-screenshot" src="https://source.unsplash.com/random/400x800/?mobile,settings,offline" alt="">
+                </div>
+                <div class="gallery-item">
+                    <video controls class="gallery-video">
+                        <source src="vid2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="project-description">
+                <h3>Project Details</h3>
+                <p>This mobile application provides offline document analysis capabilities using Flutter. Users can capture documents with their camera, extract text and images, and generate summaries without internet connection. The app features a clean, intuitive interface optimized for mobile devices.</p>
+                <p><strong>Technologies used:</strong> Flutter, Dart, Firebase, ML Kit, Camera API, SQLite</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 3 Gallery (Mobile App) -->
+    <div id="project3-gallery" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeGallery('project3')">&times;</span>
+            <h2 class="gallery-title">Baker Base App</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img class="mobile-screenshot" src="b1.jpg" alt="App Home Screen">
+                </div>
+                <div class="gallery-item">
+                    <img class="mobile-screenshot" src="b2.jpg" alt="Product Catalog">
+                </div>
+                <div class="gallery-item">
+                    <img class="mobile-screenshot" src="b3.jpg" alt="Shopping Cart">
+                </div>
+                <div class="gallery-item">
+                    <img class="mobile-screenshot" src="b4.jpg" alt="Checkout Process">
+                </div>
+                <div class="gallery-item">
+                    <video controls class="gallery-video">
+                        <source src="vid3.mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+            <div class="project-description">
+                <h3>Project Details</h3>
+                <p>Baker Base is an AI-powered e-commerce application for bakeries built with Flutter. The app features personalized recommendations, seamless cart management, secure checkout, and order tracking. The AI system suggests products based on user preferences and purchase history.</p>
+                <p><strong>Technologies used:</strong> Flutter, Dart, Firebase, Stripe API, TensorFlow Lite, Google ML Kit</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Wah Cantt, Pakistan</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>ahmed962456@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+92 313 5701752</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2023 Ahmed Nadeem. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                header.style.backgroundColor = 'var(--secondary-color)';
+            }
+        });
+        
+        // Project Gallery Functions
+        function openGallery(projectId) {
+            document.getElementById(`${projectId}-gallery`).style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+        
+        function closeGallery(projectId) {
+            document.getElementById(`${projectId}-gallery`).style.display = 'none';
+            document.body.style.overflow = 'auto'; // Enable scrolling
+        }
+        
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
